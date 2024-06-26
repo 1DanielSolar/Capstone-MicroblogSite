@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/style/posts.css">
+
+
+    <script src="scripts/auth.js"></script>
+    <script>
+        if (isLoggedIn() === false) window.location.replace("index.html");
+    </script>
 </head>
 <body>
     <nav>
@@ -34,7 +40,7 @@
             <div class="left">
                 <a class="profile">
                     <div class="profile-photo">
-                        <img src="/images/sleeping.png">
+                        <img src="/images/huh.jpg">
                     </div>
                     <div class="handle">
                         <h4>Meet the Creator:</h4>
@@ -50,68 +56,7 @@
                         <span><i class="uil uil-home"></i></span>
                         <h3>Home</h3>   
                     </a>
-                    <a class="menu-item"  id="notifications">
-                        <span><i class="uil uil-bell"><small class="notification-count">9+</small></i></span>
-                        <h3>Notification</h3>
-                        <!--------------- NOTIFICATION POPUP --------------->
-                        <div class="notifications-popup">
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-2.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>Keke Benjamin</b> accepted your friend request
-                                    <small class="text-muted">2 Days Ago</small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-3.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>John Doe</b> commented on your post
-                                    <small class="text-muted">1 Hour Ago</small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-4.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>Marry Oppong</b> and <b>283 Others</b> liked your post
-                                    <small class="text-muted">4 Minutes Ago</small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-5.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>Doris Y. Lartey</b> commented on a post you are tagged in
-                                    <small class="text-muted">2 Days Ago</small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-6.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>Keyley Jenner</b> commented on a post you are tagged in
-                                    <small class="text-muted">1 Hour Ago</small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="profile-photo">
-                                    <img src="./images/profile-7.jpg">
-                                </div>
-                                <div class="notification-body">
-                                    <b>Jane Doe</b> commented on your post
-                                    <small class="text-muted">1 Hour Ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!--------------- END NOTIFICATION POPUP --------------->
-                    </a>
+                       
                     <a class="menu-item" id="messages-notifications">
                         <span><i class="uil uil-envelope-alt"><small class="notification-count">6</small></i></span>
                         <h3>Messages</h3>
@@ -126,7 +71,14 @@
 
                         <h3>Settings</h3>
                     </a>
-                    
+                    <li class="nav-item">
+                        <a href="#" id="signoutBtn" class="menu-item" title="Sign out"
+                           data-bs-toggle="tooltip" data-bs-placement="right"
+                           data-bs-original-title="Customers">
+                            <span><i class="bi bi-person-x-fill fs-1 text-white"></i></span>
+                            <h3>Logout</h3>
+                        </a>
+                    </li>
                 </div>
             </div>
 
@@ -282,7 +234,9 @@
             </div>
         </div>
     </div>
+    
 
     <script src="/scripts/posts.js"></script>
+    <script src="/scripts/globalfunctions.js"></script>
 </body>
 </html>

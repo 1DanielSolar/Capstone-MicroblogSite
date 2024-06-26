@@ -19,7 +19,7 @@ function displayPost() {
   let postOutputList = document.getElementById("postOutputList");
   postOutputList.innerHTML = "";
 
-  fetch(api + `/api/posts?limit=500&offset=0}`, {
+  fetch(api + `/api/posts`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${getLoginData().token}`,
@@ -230,3 +230,5 @@ Bg3.addEventListener('click', () => {
     Bg2.classList.remove('active');
     changeBG();
 });
+
+
