@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-
 :root {
     --primary-color-hue: 252;
     --dark-color-lightness: 17%;
@@ -25,7 +22,6 @@
 
     --sticky-top-left: 5.4rem;
     --sticky-top-right: -18rem;
-
 }
 
 *, *::before, *::after {
@@ -41,7 +37,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--color-dark);
-    background: var(--color-light);
+    background: var(--color-white); /* Main background color */
     overflow-x: hidden;
 }
 
@@ -49,6 +45,10 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    background: var(--color-light); /* Container background color */
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); /* Example of adding shadow for noticeable effect */
 }
 
 .profile-photo {
@@ -104,7 +104,6 @@ nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .search-bar {
@@ -139,9 +138,13 @@ main {
 
 main .container {
     display: grid;
-    grid-template-columns: 18vw auto  20vw;
+    grid-template-columns: 18vw auto 20vw;
     column-gap: 2rem;
     position: relative;
+    background: var(--color-light); /* Container background color */
+    border-radius: var(--card-border-radius);
+    padding: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); /* Example of adding shadow for noticeable effect */
 }
 
 /* =============== Left ============== */
@@ -277,8 +280,6 @@ main .container .left .profile {
     display: block;
 }
 
-
-
 /* =============== Create Post ============== */
 .middle .create-post {
     width: 100%;
@@ -299,8 +300,6 @@ main .container .left .profile {
     color: var(--color-dark);
     margin-right: 1rem;
 }
-
-
 
 /* =============== Right ============== */
 main .container .right {
@@ -341,7 +340,7 @@ main .container .right {
 
 .right .messages .category h6 {
     width: 100%;
-    text-align: center;
+    text-align;
     border-bottom: 4px solid var(--color-light);
     padding-bottom: 0.5rem;
     font-size: 0.75rem;
@@ -376,7 +375,7 @@ main .container .right {
 }
 
 .right .messages .message p {
-    font-size:0.8rem;
+    font-size: 0.8rem;
 }
 
 .right .messages .message .profile-photo .active {
@@ -390,191 +389,23 @@ main .container .right {
     right: 0;
 }
 
-
-
-
-/* =============== Theme Customization ============== */
-.customize-theme {
-    background: rgba(0, 0, 0, 0.5);
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100%;
-    text-align: center;
-    display: grid;
-    place-items: center;
-    display: none;
+/* =============== Card Footer ============== */
+.card-footer .btn-group .btn {
+    width: auto;
+    margin-right: 0.5rem;
 }
 
-.customize-theme .card {
-    background: var(--color-white);
-    padding: 3rem;
-    border-radius: var(--card-border-radius);
-    width:50%;
-    box-shadow: 0 0 1rem var(--color-primary);
+.card-footer .btn-group .btn svg {
+    vertical-align: middle;
 }
 
-/* =============== Font Size ============== */
-.customize-theme .font-size {
-    margin-top: 5rem;
-}
-
-.customize-theme .font-size > div {
+.card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--color-light);
-    padding: var(--search-padding);
-    border-radius: var(--card-border-radius);
-}
-
-.customize-theme .choose-size {
-    background: var(--color-secondary);
-    height: 0.3rem;
-    width: 100%;
-    margin: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.customize-theme .choose-size span {
-    width: 1rem;
-    height: 1rem;
-    background: var(--color-secondary);
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.customize-theme .choose-size span.active {
-    background: var(--color-primary);
-}
-
-/* =============== Color ============== */
-.customize-theme .color {
-    margin-top: 2rem;
-}
-
-.customize-theme .choose-color {
-    background: var(--color-light);
-    padding: var(--search-padding);
-    border-radius: var(--card-border-radius);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.customize-theme .choose-color span {
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 50%;
-}
-
-.customize-theme .choose-color span:nth-child(1) {
-    background: hsl(233, 60%, 16%);
-}
-
-.customize-theme .choose-color span:nth-child(2) {
-    background: hsl(52, 75%, 60%);
-}
-
-.customize-theme .choose-color span:nth-child(3) {
-    background: hsl(352, 75%, 60%);
-}
-
-.customize-theme .choose-color span:nth-child(4) {
-    background: hsl(152, 75%, 60%);
-}
-
-.customize-theme .choose-color span:nth-child(5) {
-    background: hsl(202, 75%, 60%);
-}
-
-.customize-theme .choose-color span.active {
-    border: 5px solid var(--color-secondary);
-}
-
-/* =============== Background ============== */
-.customize-theme .background {
-    margin-top: 2rem;
-}
-
-.customize-theme .choose-bg {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-}
-
-.customize-theme .choose-bg > div {
-    padding: var(--card-padding);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 0.4rem;
-    cursor: pointer;
-}
-
-.customize-theme .choose-bg > div.active {
-    border: 2px solid var(--color-primary);
-}
-
-.customize-theme .choose-bg .bg-1 {
-    background: white;
-    color: black;
-}
-
-.customize-theme .choose-bg .bg-2 {
-    background: hsl(252, 30%, 17%);
-    color: white;
-}
-
-.customize-theme .choose-bg .bg-3 {
-    background: hsl(252, 30%, 10%);
-    color: white;
-}
-
-.customize-theme .choose-bg > div span {
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid var(--color-grey);
-    border-radius: 50%;
-    margin-right: 1rem;
-}
-
-.center {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: flex-start; /* Align to the top */
     padding: 10px;
 }
 
-.card-container {
-    width: 100%;
-    max-width: 600px; /* Maximum width of the card container */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Card styling */
-.card {
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #333;
-    color: white;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+textarea {
+    resize: none;
 }
