@@ -30,7 +30,7 @@ window.addEventListener('load', function () {
         headers: myHeaders,
         body: raw,
       };
-      fetch(api + "/api/users", options)
+      fetch(apiBaseURL + "/api/users", options)
       .then(response => {
           if(!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);

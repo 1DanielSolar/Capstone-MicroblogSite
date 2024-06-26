@@ -1,234 +1,53 @@
 /* Posts Page JavaScript */
+"use strict";
 
 "use strict";
 
-window.addEventListener("load", function () {
-  displayPost();
-  document.getElementById("post").placeholder =
-    `Welcome @` + getLoginData().username + ", care to share?";
-  document.getElementById("postBtn").onclick = createPost;
-  const signoutBtn = document.getElementById("signoutBtn");
+// Ensure there is only one fetchPosts function
+function fetchPosts() {
+    const loginData = getLoginData();
+    const myHeaders = new Headers();
+    myHeaders.append('accept', 'application/json');
+    myHeaders.append('Authorization', `Bearer ${loginData.token}`);
 
-  signoutBtn.onclick = function () {
-    logout();
-  };
-});
+    fetch('http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts?limit=20&offset=0', {
+        headers: myHeaders
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayPosts(data);
+    })
+    .catch(error => console.error('Error fetching posts:', error));
+}
 
-function displayPost() {
-  clearPostsContainer();
-  let postOutputList = document.getElementById("postOutputList");
-  postOutputList.innerHTML = "";
+// Ensure there is only one displayPosts function
+function displayPosts(posts) {
+    const postsContainer = document.getElementById('posts');
+    postsContainer.innerHTML = '';
 
-  fetch(api + `/api/posts`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${getLoginData().token}`,
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    posts.forEach(post => {
+        const postCard = document.createElement('div');
+        postCard.className = 'card mb-3';
+        postCard.innerHTML = `
+        <div class="card-body">
+            <h5 class="card-title">${post.username}</h5>
+            <p class="card-text">${post.text}</p>
+            <p class="card-text"><small class="text-muted">${new Date(post.createdAt).toLocaleString()}</small></p>
+            <button class="btn btn-outline-primary like-button" data-post-id="${post._id}">
+                <i class="bi bi-heart"></i> 
+                <span class="like-count">${post.likes.length}</span>
+            </button>
+        </div>
+    `;
+        postsContainer.appendChild(postCard);
+    });
 
-      data.forEach((post) => {
-        displayCard(post);
-      });
-
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            toggleLike(postId, this);
+        });
     });
 }
 
-
-//* Customization for the Posts Page
-// Sidebar
-const menuItems = document.querySelectorAll('.menu-item');
-
-// Messages 
-const messageNotification = document.querySelector('#messages-notifications');
-const messages = document.querySelector('.messages');
-const message = messages.querySelectorAll('.message');
-const messageSearch = document.querySelector('#message-search');
-
-//Theme
-const theme = document.querySelector('#theme');
-const themeModal = document.querySelector('.customize-theme');
-const fontSize = document.querySelectorAll('.choose-size span');
-var root = document.querySelector(':root');
-const colorPalette = document.querySelectorAll('.choose-color span');
-const Bg1 = document.querySelector('.bg-1');
-const Bg2 = document.querySelector('.bg-2');
-const Bg3 = document.querySelector('.bg-3');
-
-
-// ============== SIDEBAR ============== 
-
-// Remove active class from all menu items
-const changeActiveItem = () => {
-    menuItems.forEach(item => {
-        item.classList.remove('active');
-    })
-}
-
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        changeActiveItem();
-        item.classList.add('active');
-        if(item.id != 'notifications') {
-            document.querySelector('.notifications-popup').
-            style.display = 'none';
-        } else {
-            document.querySelector('.notifications-popup').
-            style.display = 'block';
-            document.querySelector('#notifications .notification-count').
-            style.display = 'none';
-        }
-    })
-})
-
-//Highlight messages card when messages menu item is clicked
-messageNotification.addEventListener('click', () => {
-    messages.style.boxShadow = '0 0 1rem var(--color-primary)';
-    messageNotification.querySelector('.notification-count').style.display = 'none';
-    setTimeout(() => {
-        messages.style.boxShadow = 'none';
-    }, 2000);
-})
-
-// ============== THEME / DISPLAY CUSTOMIZATION ============== 
-
-// Opens Modal
-const openThemeModal = () => {
-    themeModal.style.display = 'grid';
-}
-
-// Closes Modal
-const closeThemeModal = (e) => {
-    if(e.target.classList.contains('customize-theme')) {
-        themeModal.style.display = 'none';
-    }
-}
-
-themeModal.addEventListener('click', closeThemeModal);
-theme.addEventListener('click', openThemeModal);
-
-
-// ============== FONT SIZE ============== 
-
-// remove active class from spans or font size selectors
-const removeSizeSelectors = () => {
-    fontSize.forEach(size => {
-        size.classList.remove('active');
-    })
-}
-
-fontSize.forEach(size => { 
-   size.addEventListener('click', () => {
-        removeSizeSelectors();
-        let fontSize;
-        size.classList.toggle('active');
-
-        if(size.classList.contains('font-size-1')) { 
-            fontSize = '10px';
-            root.style.setProperty('----sticky-top-left', '5.4rem');
-            root.style.setProperty('----sticky-top-right', '5.4rem');
-        } else if(size.classList.contains('font-size-2')) { 
-            fontSize = '13px';
-            root.style.setProperty('----sticky-top-left', '5.4rem');
-            root.style.setProperty('----sticky-top-right', '-7rem');
-        } else if(size.classList.contains('font-size-3')) {
-            fontSize = '16px';
-            root.style.setProperty('----sticky-top-left', '-2rem');
-            root.style.setProperty('----sticky-top-right', '-17rem');
-        } else if(size.classList.contains('font-size-4')) {
-            fontSize = '19px';
-            root.style.setProperty('----sticky-top-left', '-5rem');
-            root.style.setProperty('----sticky-top-right', '-25rem');
-        } else if(size.classList.contains('font-size-5')) {
-            fontSize = '22px';
-            root.style.setProperty('----sticky-top-left', '-12rem');
-            root.style.setProperty('----sticky-top-right', '-35rem');
-        }
-
-        // change font size of the root html element
-        document.querySelector('html').style.fontSize = fontSize;
-   })
-})
-
-// Remove active class from colors
-const changeActiveColorClass = () => {
-    colorPalette.forEach(colorPicker => {
-        colorPicker.classList.remove('active');
-    })
-}
-
-// Change color primary
-colorPalette.forEach(color => {
-    color.addEventListener('click', () => {
-        let primary;
-        changeActiveColorClass(); 
-
-        if(color.classList.contains('color-1')) {
-            primaryHue = 252;
-        } else if(color.classList.contains('color-2')) {
-            primaryHue = 52;
-        } else if(color.classList.contains('color-3')) {
-            primaryHue = 352;
-        } else if(color.classList.contains('color-4')) {
-            primaryHue = 152;
-        } else if(color.classList.contains('color-5')) {
-            primaryHue = 202;
-        }
-
-        color.classList.add('active');
-        root.style.setProperty('--primary-color-hue', primaryHue);
-    })
-})
-
-//Theme Background Values
-let lightColorLightness;
-let whiteColorLightness;
-let darkColorLightness;
-
-// Changes background color
-const changeBG = () => {
-    root.style.setProperty('--light-color-lightness', lightColorLightness);
-    root.style.setProperty('--white-color-lightness', whiteColorLightness);
-    root.style.setProperty('--dark-color-lightness', darkColorLightness);
-}
-
-Bg1.addEventListener('click', () => {
-    // add active class
-    Bg1.classList.add('active');
-    // remove active class from the others
-    Bg2.classList.remove('active');
-    Bg3.classList.remove('active');
-    //remove customized changes from local storage
-    window.location.reload();
-});
-
-Bg2.addEventListener('click', () => {
-    darkColorLightness = '95%';
-    whiteColorLightness = '20%';
-    lightColorLightness = '15%';
-
-    // add active class
-    Bg2.classList.add('active');
-    // remove active class from the others
-    Bg1.classList.remove('active');
-    Bg3.classList.remove('active');
-    changeBG();
-});
-
-Bg3.addEventListener('click', () => {
-    darkColorLightness = '95%';
-    whiteColorLightness = '10%';
-    lightColorLightness = '0%';
-
-    // add active class
-    Bg3.classList.add('active');
-    // remove active class from the others
-    Bg1.classList.remove('active');
-    Bg2.classList.remove('active');
-    changeBG();
-});
-
-
+// Remove the duplicate fetchPosts and displayPosts functions
