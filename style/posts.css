@@ -1,5 +1,6 @@
+/* Base Styles (unchanged) */
 :root {
-    --primary-color-hue: 200; /* Changed from 252 to 200 for light blue */
+    --primary-color-hue: 200; /* Light blue hue */
     --dark-color-lightness: 17%;
     --light-color-lightness: 95%;
     --white-color-lightness: 100%;
@@ -41,7 +42,7 @@ body {
     overflow-x: hidden;
 }
 
-/* =============== General Style ============== */
+/* General Style */
 .container {
     display: flex;
     justify-content: space-between;
@@ -90,7 +91,7 @@ img {
     color: var(--color-grey);
 }
 
-/* =============== Navbar ============== */
+/* Navbar */
 nav {
     width: 100%;
     background: var(--color-white);
@@ -125,7 +126,7 @@ nav .search-bar input[type="search"]::placeholder {
     color: var(--color-grey);
 }
 
-/* =============== Main ============== */
+/* Main Layout */
 main {
     position: relative;
     top: 5.4rem;
@@ -134,7 +135,7 @@ main {
     padding: 0 20px;
 }
 
-/* =============== Left Sidebar ============== */
+/* Left Sidebar */
 main .left {
     width: 18%;
     height: calc(100vh - 5.4rem);
@@ -222,7 +223,7 @@ main .left .profile {
     margin-bottom: 0.7rem;
 }
 
-/* =============== Center Content ============== */
+/* Center Content */
 main .center {
     width: 60%;
     margin: 0 auto;
@@ -250,7 +251,7 @@ textarea {
     resize: none;
 }
 
-/* =============== Right Sidebar ============== */
+/* Right Sidebar */
 main .right {
     width: 18%;
     height: calc(100vh - 5.4rem);
@@ -329,7 +330,7 @@ main .right {
     color: var(--color-grey);
 }
 
-/* =============== Card Footer ============== */
+/* Card Footer */
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -343,39 +344,98 @@ main .right {
     width: auto;
     margin-right: 0.5rem;
 }
-
 .card-footer .btn-group .btn svg {
     vertical-align: middle;
 }
 
-/* =============== Responsive Design ============== */
-@media (max-width: 1200px) {
-    main .left,
-    main .right {
-        width: 15%;
-    }
-    main .center {
-        width: 70%;
-    }
+/* Create Post Section */
+.create-post {
+    width: 100%;
+    max-width: 800px; /* Adjust max-width as needed */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-white);
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 5.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-@media (max-width: 768px) {
-    nav .search-bar {
-        display: none;
+.create-post input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.create-post button {
+    padding: 10px 20px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-post button:hover {
+    background-color: var(--color-secondary);
+}
+
+/* Adjustments for Mobile View */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
     }
+
+    .create-post {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        margin-top: 5.4rem;
+    }
+
     main {
         flex-direction: column;
         align-items: center;
     }
+
     main .left,
+    main .center,
     main .right {
         width: 100%;
+        max-width: 100%;
         position: static;
-        height: auto;
-        box-shadow: none;
+        padding: 20px;
         margin-bottom: 20px;
     }
-    main .center {
-        width: 100%;
+
+    main .right {
+        margin-top: 20px;
     }
 }
+main .container .middle {
+    background: var(--color-light); /* Change to a darker background color */
+    border-radius: var(--card-border-radius);
+    padding: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); /* Optional: Add shadow for effect */
+}
+#post-container {
+    display: grid;
+    gap: 20px; /* Adjust gap between posts */
+    justify-content: center;
+}
+
+
