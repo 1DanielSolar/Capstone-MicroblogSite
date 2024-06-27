@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZZZ</title>
+    <!-- IconScout CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/style/posts.css">
+
+
+    <script src="scripts/auth.js"></script>
+    <script>
+        if (isLoggedIn() === false) window.location.replace("index.html");
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="logo">
+                Zzz
+            </h2>
+            <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search for people to bother">
+            </div>
+                <div class="profile-photo">
+                    <img src="/images/sleeping.png" alt="">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-------------------------------- MAIN ----------------------------------->
+    <main>
+        <div class="container">
+            <!----------------- LEFT -------------------->
+            <div class="left">
+                <a class="profile">
+                    <div class="profile-photo">
+                        <img src="/images/huh.jpg">
+                    </div>
+                    <div class="handle">
+                        <h4>Meet the Creator:</h4>
+                        <p class="text-muted">
+                            Daniel Solar
+                        </p>
+                    </div>
+                </a>
+
+                <!----------------- SIDEBAR -------------------->
+                <div class="sidebar">
+                    <a class="menu-item active">
+                        <span><i class="uil uil-home"></i></span>
+                        <h3>Home</h3>   
+                    </a>
+                       
+                    <a class="menu-item" id="messages-notifications">
+                        <span><i class="uil uil-envelope-alt"><small class="notification-count">6</small></i></span>
+                        <h3>Messages</h3>
+                    </a>
+                    <a href="profile.html" class="menu-item">
+                        <span><i class="uil uil-palette"></i></span>
+                        <h3>Profile</h3>
+                    </a>
+                    </a>
+                    <a class="menu-item" id="theme">
+                        <span><i class="uil uil-setting"></i></span>
+
+                        <h3>Settings</h3>
+                    </a>
+                    <li class="nav-item">
+                        <input id="logout-button" type="button" class="btn btn-secondary" onclick="logout()" value="Logout">
+                            <span><i class="bi bi-person-x-fill fs-1 text-white"></i></span>
+                        </a>
+                    </li>
+                </div>
+            </div>
+
+           
+            <div class="centerContainer px-4">
+                <div class="container p-0">
+              
+
+            <!----------------- RIGHT -------------------->
+            <div class="right">
+                <!------- MESSAGES ------->
+                <div class="messages">
+                    <div class="heading">
+                        <h4>Messages</h4>
+                        <i class="uil uil-edit"></i>
+                    </div>
+                    <!------- SEARCH BAR ------->
+                    <div class="search-bar">
+                        <i class="uil uil-search"></i>
+                        <input type="search" placeholder="Search messages" id="message-search">
+                    </div>
+                    <!------- MESSAGES CATEGORY ------->
+                    <div class="category">
+                        <h6 class="active">Primary</h6>
+                        <h6>General</h6>
+                        <h6 class="message-requests">Requests (7)</h6>
+                    </div>
+                    <!------- MESSAGES ------->
+                    <div class="message">
+                        <div class="profile-photo">
+                            <img src="/images/haku.jpg">
+                        </div>
+                        <div class="message-body">
+                            <h5>Kaaliyah</h5>
+                            <p class="text-muted">RAHHHH</p>
+                        </div>
+                    </div>
+                    <!------- MESSAGES ------->
+                    <div class="message">
+                        <div class="profile-photo">
+                            <img src="/images/calcifer.jpg">
+                        </div>
+                        <div class="message-body">
+                            <h5>Dante</h5>
+                            <p class="text-bold">1 new message</p>
+                        </div>
+                    </div>
+                    <!------- MESSAGES ------->
+                    <div class="message">
+                        <div class="profile-photo">
+                            <img src="/images/kuni.jpg">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-body">
+                            <h5>Remsey</h5>
+                            <p class="text-muted">lol u right</p>
+                        </div>
+                    </div>
+                    <!------- MESSAGES ------->
+                    <div class="message">
+                        <div class="profile-photo">
+                            <img src="/images/gnocchi.jpg">
+                        </div>
+                        <div class="message-body">
+                            <h5>Gnocchi</h5>
+                            <p class="text-muted">Birtday Tomorrow</p>
+                        </div>
+                    </div>
+                    <!------- MESSAGES ------->
+                    <div class="message">
+                        <div class="profile-photo">
+                            <img src="/images/jiji.jpg">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-body">
+                            <h5>Victor</h5>
+                            <p class="text-bold">5 new messages</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+    <script src="/scripts/posts.js"></script>
+    <script src="/scripts/globalfunctions.js"></script>
+</body>
+</html>
