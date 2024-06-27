@@ -398,15 +398,22 @@ main .right {
     }
 
     .create-post {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
         width: 100%;
-        max-width: none;
-        margin-top: 5.4rem;
+        max-width: 800px; /* Adjust max-width as needed */
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--color-white);
+        padding: 1rem;
+        border-radius: var(--card-border-radius);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 5.4rem; /* Adjust top position as per your layout */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10; /* Ensure it's above other content */
     }
-
     main {
         flex-direction: column;
         align-items: center;
@@ -435,7 +442,9 @@ main .container .middle {
 #post-container {
     display: grid;
     gap: 20px; /* Adjust gap between posts */
-    justify-content: center;
+    justify-content: center; /* Center align posts horizontally */
+    padding-top: 150px; /* Adjust top padding to make space for fixed create post section */
+    max-width: 800px; /* Set a maximum width for the posts container */
+    margin: 0 auto; /* Center the container horizontally */
 }
-
 
