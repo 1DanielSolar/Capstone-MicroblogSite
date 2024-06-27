@@ -87,7 +87,7 @@ function createLikeButton(likes, postId) {
         postId: postId,
       };
   
-      fetch(api + "/api/likes", {
+      fetch(apiBaseURL + "/api/likes", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -167,7 +167,7 @@ function createDeleteButton(data) {
   
       deleteButton.addEventListener("click", (e) => {
         e.preventDefault();
-        fetch(api + `/api/posts/${data}`, {
+        fetch(apiBaseURL + `/api/posts/${data}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${getLoginData().token}`,
@@ -217,7 +217,7 @@ async function createPost() {
       },
     };
   
-    await fetch(api + "/api/posts", options).then((response) => {
+    await fetch(apiBaseURL + "/api/posts", options).then((response) => {
       if (response.ok) {
         inputElement.value = "";
         displayPost()
